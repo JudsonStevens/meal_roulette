@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Validations' do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :username }
+  end
+
+  describe 'Relationships' do
+    it { should have_many :tags }
+    it { should have_many :tag_users }
+  end
 end

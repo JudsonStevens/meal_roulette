@@ -10,29 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_142155) do
+ActiveRecord::Schema.define(version: 2018_05_19_192203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "restaurant_tags", id: false, force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.bigint "tag_id"
+    t.integer "likeness"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_restaurant_tags_on_restaurant_id"
+    t.index ["tag_id"], name: "index_restaurant_tags_on_tag_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.integer "phone_number"
+    t.text "yelp_review_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "tag_id"
+    t.integer "preference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_users_on_tag_id"
+    t.index ["user_id"], name: "index_tag_users_on_user_id"
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["type"], name: "index_tags_on_type"
-  end
-
-  create_table "tags_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "tag_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_users_on_name"
   end
 
+  add_foreign_key "restaurant_tags", "restaurants"
+  add_foreign_key "restaurant_tags", "tags"
+  add_foreign_key "tag_users", "tags"
+  add_foreign_key "tag_users", "users"
 end
