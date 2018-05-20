@@ -13,7 +13,7 @@ RSpec.describe "restaurants/edit", type: :view do
   it "renders the edit restaurant form" do
     render
 
-    assert_select "form[action=?][method=?]", restaurant_path(@restaurant), "post" do
+    assert_select "form[action=?][method=?]", admin_restaurant_path(@restaurant), "post" do
 
       assert_select "input[name=?]", "restaurant[name]"
 
