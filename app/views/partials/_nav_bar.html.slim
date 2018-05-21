@@ -8,18 +8,21 @@ nav class="navbar navbar-inverse"
       a class="navbar-brand" href="#" Logo
     div class="collapse navbar-collapse" id="myNavbar"
       ul class="nav navbar-nav"
-        li class="active" 
+        li class="#{current_class?(root_path) || current_class?(new_user_path)}"
           a href="#" Home
-        li
+        li 
           a href="#" Profile
         li
           a href="#" Spin the Wheel
         li
           a href="#" Contact
       ul class="nav navbar-nav navbar-right"
-        li
-          - if current_user
-            = link_to 'Profile', user_path(@user)
-        li
-          = link_to 
-            span class="glyphicon glyphicon-log-in" Login 
+        - if !current_user.nil?
+          li
+            a href="user_path(@user)" Profile
+          li
+            = link_to 'Logout', logout_path, method: :delete
+        - else
+          li
+            = link_to 
+              span class="glyphicon glyphicon-log-in" Login 

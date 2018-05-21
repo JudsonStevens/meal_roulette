@@ -13,7 +13,7 @@ RSpec.describe "users/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", user_path(@user), "post" do
-
+      
       assert_select "input[name=?]", "user[name]"
 
       assert_select "input[name=?]", "user[username]"

@@ -1,0 +1,18 @@
+
+- if @user
+  p id="notice"
+    = notice
+
+  p
+    strong 
+      ' Name:
+      = @user.name
+
+  p
+    strong 
+      ' Username:
+      = @user.username
+
+  = link_to 'Edit', edit_user_path(@user)
+- else
+  h2 You need to register for an account to view your profile!
