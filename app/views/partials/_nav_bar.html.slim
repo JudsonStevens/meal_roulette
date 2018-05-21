@@ -18,5 +18,8 @@ nav class="navbar navbar-inverse"
           a href="#" Contact
       ul class="nav navbar-nav navbar-right"
         li
+          - if current_user
+            = link_to 'Profile', user_path(@user)
+        li
           = link_to 
             span class="glyphicon glyphicon-log-in" Login 
