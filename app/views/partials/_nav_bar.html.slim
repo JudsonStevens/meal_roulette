@@ -24,5 +24,6 @@ nav class="navbar navbar-inverse"
             = link_to 'Logout', logout_path, method: :delete
         - else
           li
-            = link_to 
-              span class="glyphicon glyphicon-log-in" Login 
+            = link_to(login_path) do 
+              span class="glyphicon glyphicon-log-in" Login
+              

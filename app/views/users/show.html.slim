@@ -1,7 +1,6 @@
-
-- if @user
-  p id="notice"
-    = notice
+- if !@user.nil?
+  h1
+    strong Profile Details
 
   p
     strong 
@@ -13,6 +12,16 @@
       ' Username:
       = @user.username
 
-  = link_to 'Edit', edit_user_path(@user)
+  p
+    strong
+      ' List of Dietary Preferences
+      ul
+        - @user.tags.each do |tag|
+          li
+            tag.type
+
+  = link_to 'Add Dietary Preferences', new_user_tag_path(@user)
+  br
+  = link_to 'Edit Profile Information', edit_user_path(@user)
 - else
   h2 You need to register for an account to view your profile!

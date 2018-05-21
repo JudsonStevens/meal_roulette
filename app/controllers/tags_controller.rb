@@ -14,7 +14,11 @@ class TagsController < ApplicationController
 
   # GET /tags/new
   def new
-    @tag = Tag.new
+    @user = User.find_by(id: session[:user_id])
+    @tag = @user.tags.new
+    @tag_users = @tag.tag_users.new
+    # @tag_users = @user.tag_users.build
+    # @tag = @tag_users.build_tag
   end
 
   # GET /tags/1/edit
@@ -24,15 +28,13 @@ class TagsController < ApplicationController
   # POST /tags
   # POST /tags.json
   def create
-    @tag = Tag.new(tag_params)
-
+    tag = Tag.create!(type: tag_params[:type])
+    @tag_user = tag.tag_users.new(user_id: params[:user_id], preference: tag_params[:tag_users_attributes]["0"][:preference])
     respond_to do |format|
-      if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
-        format.json { render :show, status: :created, location: @tag }
+      if @tag_user.save
+        format.html { redirect_to user_path(@tag_user.user_id), notice: 'Tag was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +71,6 @@ class TagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params
-      params.require(:tag).permit(:type)
+      params.require(:tag).permit(:type, tag_users_attributes: [:preference])
     end
 end

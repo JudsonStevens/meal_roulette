@@ -6,4 +6,5 @@ class Tag < ApplicationRecord
   has_many :restaurants, through: :restaurant_tags
   has_many :users, through: :tag_users
   validates_presence_of :type
+  accepts_nested_attributes_for :tag_users
 end
