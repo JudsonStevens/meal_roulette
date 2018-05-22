@@ -5,7 +5,7 @@ describe 'Admin user' do
     name = 'Jo'
     username = 'Jo@gmail.com'
     password = 'secret'
-    @user1 = User.create(name: 'John', username: 'John@gmail.com', password: 'newthing')
+    @user1 = User.create(name: 'Larry', username: 'Larry@gmail.com', password: 'newthing')
     @user2 = User.create(name: name, username: username, password: password, admin: true)
     visit(login_path)
 
@@ -16,8 +16,8 @@ describe 'Admin user' do
   end
 
   context 'logs in and goes to index page' do
-    xit 'can create a new user after clicking on the create user link' do
-      expect(current_path).to eq(user_path(@user1))
+    it 'can create a new user after clicking on the create user link' do
+      expect(current_path).to eq(user_path(@user2))
 
       visit(admin_users_path)
       click_on('New User')
@@ -70,7 +70,6 @@ describe 'Admin user' do
 
       expect(page).to have_content(@user2.name)
       expect(page).to_not have_content(@user1.name)
-
     end
   end
 end
