@@ -5,7 +5,8 @@ describe 'Admin user' do
     name = 'Jo'
     username = 'Jo@gmail.com'
     password = 'secret'
-    @user1 = User.create(name: name, username: username, password: password, admin: true)
+    @user1 = User.create(name: 'Larry', username: 'Larry@gmail.com', password: 'newthing')
+    @user2 = User.create(name: name, username: username, password: password, admin: true)
     visit(login_path)
 
     fill_in(:session_email, with: username)
@@ -15,8 +16,8 @@ describe 'Admin user' do
   end
 
   context 'logs in and goes to index page' do
-    xit 'can create a new user after clicking on the create user link' do
-      expect(current_path).to eq(user_path(@user1))
+    it 'can create a new user after clicking on the create user link' do
+      expect(current_path).to eq(user_path(@user2))
 
       visit(admin_users_path)
       click_on('New User')
@@ -41,13 +42,13 @@ describe 'Admin user' do
     end
 
     it 'can edit a user after clicking on edit next to the users name' do
-      expect(current_path).to eq(user_path(@user1))
+      expect(current_path).to eq(user_path(@user2))
 
       visit(admin_users_path)
 
       expect(page).to have_content(@user1.name)
 
-      click_on('Edit')
+      click_on('Edit', :match => :first)
 
       expect(current_path).to eq(edit_admin_user_path(@user1))
 
@@ -56,6 +57,19 @@ describe 'Admin user' do
       click_on('Update User')
 
       expect(current_path).to eq(admin_users_path)
+    end
+
+    it 'can delete a user after clicking on the delete button next to the users name' do
+      expect(current_path).to eq(user_path(@user2))
+
+      visit(admin_users_path)
+
+      expect(page).to have_content(@user1.name)
+      expect(page).to have_content(@user2.name)
+      click_on('Destroy', :match => :first)
+
+      expect(page).to have_content(@user2.name)
+      expect(page).to_not have_content(@user1.name)
     end
   end
 end
