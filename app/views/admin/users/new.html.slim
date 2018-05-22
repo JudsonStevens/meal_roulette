@@ -1,0 +1,9 @@
+- if current_user && admin?
+  h1 New User Creation
+
+  = render 'admin/users/form', user: @user
+
+  = link_to 'Back', admin_user_path(current_user)
+
+- else
+  h1 You are not authorized to view this page.

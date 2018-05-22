@@ -1,0 +1,8 @@
+- if !current_user.nil?
+  = controller.redirect_to user_path(current_user)
+- else
+  h1 New User
+
+  = render 'form', user: @user 
+
+  = link_to 'Back', root_path
