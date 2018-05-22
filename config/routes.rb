@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :restaurants
     resources :tags, only: [:index]
-    resources :users, only: [:index]
+    resources :users
   end
   resources :users, except: [:index] do
     resources :tags, only: [:new, :create, :update, :show]
