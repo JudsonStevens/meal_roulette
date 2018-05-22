@@ -10,6 +10,7 @@ class TagsController < ApplicationController
   # GET /tags/1
   # GET /tags/1.json
   def show
+
   end
 
   # GET /tags/new
@@ -17,8 +18,6 @@ class TagsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @tag = @user.tags.new
     @tag_users = @tag.tag_users.new
-    # @tag_users = @user.tag_users.build
-    # @tag = @tag_users.build_tag
   end
 
   # GET /tags/1/edit
@@ -29,6 +28,7 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
     tag = Tag.create!(type: tag_params[:type])
+    require 'pry'; binding.pry
     @tag_user = tag.tag_users.new(user_id: params[:user_id], preference: tag_params[:tag_users_attributes]["0"][:preference])
     respond_to do |format|
       if @tag_user.save

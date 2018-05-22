@@ -6,12 +6,12 @@ RSpec.describe "users/index", type: :view do
       User.create!(
         :name => "John",
         :username => "John@gmail.com",
-        :password_digest => "CrazyLongPassword"
+        :password => "CrazyLongPassword"
         ),
       User.create!(
         :name => "Jim",
         :username => "Jim@gmail.com",
-        :password_digest => "CrazyLongPassword"
+        :password => "CrazyLongPassword"
         )
     ])
   end

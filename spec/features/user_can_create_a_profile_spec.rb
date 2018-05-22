@@ -5,17 +5,16 @@ describe 'User' do
     name = 'John Smith'
     email = 'John@gmail.com'
     password = 'LongPassword'
-    profile_page_message = 'Fill out your likes, dislikes, and dietary restrictions!'
+    profile_page_message = 'List of Dietary Preferences'
     visit(new_user_path)
 
     fill_in('user[name]', with: name)
     fill_in('user[username]', with: email)
-    fill_in('user[password_digest]', with: password)
+    fill_in('user[password]', with: password)
     fill_in('user[password_confirmation]', with: password)
 
     click_on('Create User')
-
-    expect(current_path).to eq(user_path(User.all.first))
+    expect(current_path).to eq(user_path(User.last))
     expect(page).to have_content(User.all.first.username)
     expect(page).to have_content(User.all.first.name)
     expect(page).to have_content(profile_page_message)

@@ -16,9 +16,11 @@
     strong
       ' List of Dietary Preferences
       ul
-        - @user.tags.each do |tag|
+        - @user.tag_users.each do |tag_user|
           li
-            tag.type
+            = Tag.find(tag_user.tag_id).type
+            = '-'
+            = tag_user.preference
 
   = link_to 'Add Dietary Preferences', new_user_tag_path(@user)
   br

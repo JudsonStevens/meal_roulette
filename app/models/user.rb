@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :tags, through: :tag_users
   validates_presence_of :name
   validates :username, presence: true, uniqueness: true
-  validates :password_digest, presence: true
+  validates :password, presence: true
   has_secure_password
-  validates_confirmation_of :password_digest
+  validates_confirmation_of :password
 end

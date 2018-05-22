@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by(id: session[:user_id])
+    @tag_users = User.includes(:tag_users).where(user_id: @user.id)
   end
 
   # GET /users/new
@@ -70,6 +71,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :username, :password_digest)
+      params.require(:user).permit(:name, :username, :password)
     end
 end
