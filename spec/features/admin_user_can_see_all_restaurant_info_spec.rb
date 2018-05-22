@@ -7,7 +7,7 @@ describe 'Admin user' do
       username = 'Jo@gmail.com'
       password = 'secret'
       user1 = User.create(name: name, username: username, password: password, admin: true)
-      restaurant1 = Restaurant.create(name: 'Billys BBQ', address: '225 Westwood Ave', phone_number: '2253432222')
+      restaurant1 = Restaurant.create(name: 'Billys BBQ', address: '225 Westwood Ave', phone_number: 2253432222)
       visit(login_path)
 
       fill_in(:session_email, with: username)

@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    self.admin
+    current_user.admin
   end
 end

@@ -1,5 +1,6 @@
 class Admin::RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :admin?
 
   # GET /restaurants
   # GET /restaurants.json

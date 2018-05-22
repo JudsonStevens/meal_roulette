@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_22_024236) do
+ActiveRecord::Schema.define(version: 2018_05_22_035031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_024236) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.text "address"
-    t.integer "phone_number"
+    t.bigint "phone_number"
     t.text "yelp_review_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
