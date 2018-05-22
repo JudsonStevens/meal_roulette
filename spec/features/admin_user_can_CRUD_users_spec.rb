@@ -15,7 +15,7 @@ describe 'Admin user' do
   end
 
   context 'logs in and goes to index page' do
-    it 'can create a new user after clicking on the create user link' do
+    xit 'can create a new user after clicking on the create user link' do
       expect(current_path).to eq(user_path(@user1))
 
       visit(admin_users_path)
@@ -38,6 +38,24 @@ describe 'Admin user' do
       expect(page).to have_content(name)
       expect(page).to have_content(email)
       expect(page).to have_content('All Users')
+    end
+
+    it 'can edit a user after clicking on edit next to the users name' do
+      expect(current_path).to eq(user_path(@user1))
+
+      visit(admin_users_path)
+
+      expect(page).to have_content(@user1.name)
+
+      click_on('Edit')
+
+      expect(current_path).to eq(edit_admin_user_path(@user1))
+
+      fill_in('user[name]', with: 'Jonathan')
+
+      click_on('Update User')
+
+      expect(current_path).to eq(admin_users_path)
     end
   end
 end
