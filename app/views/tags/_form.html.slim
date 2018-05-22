@@ -1,0 +1,24 @@
+= form_with(model: [user, tag], local: true) do |form|
+  - if tag.errors.any?
+    div id="error_explanation"
+      h2
+        = pluralize(tag.errors.count, "error") 
+        | prohibited this tag from being saved:
+
+      ul
+        - tag.errors.full_messages.each do |message|
+          li 
+            = message
+
+  div class="field"
+    = form.label :type 
+    = form.text_field :type 
+
+  = form.fields_for :tag_users do |builder|
+    div class='field'
+      = builder.label :preference
+      = builder.select :preference, (0..10)
+   
+  div class="actions"
+    = form.submit
+

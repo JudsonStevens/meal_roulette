@@ -1,0 +1,29 @@
+- if !@user.nil?
+  h1
+    strong Profile Details
+
+  p
+    strong 
+      ' Name:
+      = @user.name
+
+  p
+    strong 
+      ' Username:
+      = @user.username
+
+  p
+    strong
+      ' List of Dietary Preferences
+      ul
+        - @user.tag_users.each do |tag_user|
+          li
+            = Tag.find(tag_user.tag_id).type
+            = '-'
+            = tag_user.preference
+
+  = link_to 'Add Dietary Preferences', new_user_tag_path(@user)
+  br
+  = link_to 'Edit Profile Information', edit_user_path(@user)
+- else
+  h2 You need to register for an account to view your profile!
