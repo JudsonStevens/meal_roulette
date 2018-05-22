@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  helper_method :current_user, :logged_in?, :admin?, :authorize
+
   private
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
-  helper_method :current_user
 
   def authorize
     redirect_to login_path unless current_user
@@ -12,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !current_user.nil?
+  end
+
+  def admin?
+    self.admin
   end
 end

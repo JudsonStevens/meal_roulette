@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   root "homepages#index"
   namespace :admin do
     resources :restaurants
-    resources :tags
-    resources :users
+    resources :tags, only: [:index]
+    resources :users, only: [:index]
   end
-  resources :users do
-    resources :tags, only: [:new, :create, :update, :index]
+  resources :users, except: [:index] do
+    resources :tags, only: [:new, :create, :update, :show]
   end
 end
