@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
+  get '/spin-the-wheel', to: "homepages#show"
   root "homepages#index"
   namespace :admin do
     resources :restaurants
