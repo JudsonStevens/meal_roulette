@@ -28,7 +28,6 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
     tag = Tag.create!(type: tag_params[:type])
-    require 'pry'; binding.pry
     @tag_user = tag.tag_users.new(user_id: params[:user_id], preference: tag_params[:tag_users_attributes]["0"][:preference])
     respond_to do |format|
       if @tag_user.save

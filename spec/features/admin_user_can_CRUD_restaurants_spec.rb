@@ -42,6 +42,5 @@ describe 'Admin user' do
       expect(page).to have_content(phone_number)
       expect(page).to have_content(yelp_review_link)
     end
-      
   end
 end

@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_22_035031) do
+ActiveRecord::Schema.define(version: 2018_05_22_203144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "restaurant_tags", id: false, force: :cascade do |t|
+  create_table "restaurant_tags", force: :cascade do |t|
     t.bigint "restaurant_id"
     t.bigint "tag_id"
     t.integer "likeness"
