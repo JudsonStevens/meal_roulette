@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    current_user.admin
+    if !current_user
+      render file: '/public/404.html'
+    elsif !current_user.admin
+      redirect_to root_path
+    else
+    end
   end
 end
