@@ -12,7 +12,7 @@
 
   div class="field"
     = form.label :type 
-    = form.text_field :type 
+    = form.collection_select(:tag_id, Tag.all, :type, :type) 
 
   = form.fields_for :tag_users do |builder|
     div class='field'

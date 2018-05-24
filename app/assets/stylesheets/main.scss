@@ -1,5 +1,5 @@
 body {
-  background-color: #3AAFA9;
+  background-color: rgb(214, 252, 247);
 }
 
 .navbar-brand img {
@@ -21,4 +21,12 @@ body {
 
 .app-description {
   text-align: center;
+}
+
+form {
+  margin-left: 15px;
+}
+
+label {
+  display: block;
 }
