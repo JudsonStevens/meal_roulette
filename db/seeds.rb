@@ -53,3 +53,6 @@ r7.restaurant_tags.create([{tag_id: 16, likeness: 10}, {tag_id: 17, likeness: 8}
 r8.restaurant_tags.create([{tag_id: 18, likeness: 10}, {tag_id: 19, likeness: 8}, {tag_id: 20, likeness: 8}])
 r9.restaurant_tags.create([{tag_id: 3, likeness: 5}, {tag_id: 21, likeness: 9}, {tag_id: 22, likeness: 7}])
 r10.restaurant_tags.create([{tag_id: 3, likeness: 8}, {tag_id: 23, likeness: 10}, {tag_id: 24, likeness: 8}])
+
+
+User.create(name: 'Judson', username: 'J@gmail.com', password: 'password', admin: true)
