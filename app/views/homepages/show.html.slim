@@ -1,14 +1,14 @@
 <input type="button" value="spin" style="float:left;" id='spin' />
 <canvas id="canvas" width="1000" height="1000"></canvas>
-- if current_user
-  - new_array = Restaurant.all.map do |restaurant|
-    - restaurant.name
-- else
-    - new_array = Restaurant.all.take(15).map do |restaurant|
-      - restaurant.name
+/ - if current_user
+/   - new_array = Restaurant.all.map do |restaurant|
+/     - restaurant.name
+/ - else
+/     - new_array = Restaurant.all.take(15).map do |restaurant|
+/       - restaurant.name
 
 javascript:
-  var options = #{new_array.to_json.html_safe};
+  var options = #{@new_array.to_json.html_safe};
 
   var startAngle = 0;
   var arc = Math.PI / (options.length / 2);
@@ -126,7 +126,7 @@ javascript:
     ctx.save();
     ctx.font = 'bold 30px Helvetica, Arial';
     var text = options[index]
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000000";
     ctx.fillText(text, 500 - ctx.measureText(text).width / 2, 50 + 10);
     ctx.restore();
   }
