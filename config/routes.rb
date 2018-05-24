@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "homepages#index"
   namespace :admin do
     resources :restaurants
-    resources :tags, only: [:index]
+    resources :tags, only: [:index, :show]
     resources :users
   end
   resources :users, except: [:index] do
